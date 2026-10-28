@@ -1,0 +1,74 @@
+{
+    "name": "pixelegg/pxe-counter",
+    "type": "typo3-cms-extension",
+    "description": "Animated number counter content element for TYPO3: counts up when scrolled into view, locale-aware, accessible, no dependencies. With a backend overview of all counters.",
+    "license": "GPL-2.0-or-later",
+    "keywords": [
+        "TYPO3",
+        "typo3-extension",
+        "content-element",
+        "counter",
+        "animation"
+    ],
+    "homepage": "https://www.pixelegg.de",
+    "authors": [
+        {
+            "name": "pixelegg",
+            "email": "info@pixelegg.de",
+            "homepage": "https://www.pixelegg.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/pixelegg/pxe-counter/issues",
+        "source": "https://github.com/pixelegg/pxe-counter"
+    },
+    "require": {
+        "php": "^8.2 || ^8.3 || ^8.4",
+        "ext-intl": "*",
+        "typo3/cms-core": "^13.4 || ^14.0",
+        "typo3/cms-backend": "^13.4 || ^14.0",
+        "typo3/cms-fluid": "^13.4 || ^14.0",
+        "typo3/cms-fluid-styled-content": "^13.4 || ^14.0",
+        "typo3/cms-frontend": "^13.4 || ^14.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.95",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^10.5 || ^11.5 || ^12.0",
+        "saschaegerer/phpstan-typo3": "^2.1 || ^3.0",
+        "ssch/typo3-rector": "^3.0",
+        "typo3/coding-standards": "^0.8 || ^0.9",
+        "typo3/testing-framework": "^8.2 || ^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pixelegg\\PxeCounter\\": "Classes/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pixelegg\\PxeCounter\\Tests\\": "Tests/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "pxe_counter"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "typo3/cms-composer-installers": true,
+            "typo3/class-alias-loader": true
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "ci:cs": "php-cs-fixer fix --config=.php-cs-fixer.php --dry-run --diff",
+        "ci:cs:fix": "php-cs-fixer fix --config=.php-cs-fixer.php",
+        "ci:rector": "rector process --dry-run",
+        "ci:stan": "phpstan analyse --no-progress",
+        "ci:test": "phpunit -c phpunit.xml.dist --testsuite unit",
+        "ci:test:functional": "phpunit -c phpunit.functional.xml.dist --testsuite functional"
+    }
+}

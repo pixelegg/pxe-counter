@@ -1,0 +1,4 @@
+name: pixelegg/counter
+label: 'Counter (animated number)'
+dependencies:
+  - typo3/fluid-styled-content

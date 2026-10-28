@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="EXT:pxe_counter/Resources/Private/Language/Backend/locallang.xlf" product-name="pxe_counter">
+		<header/>
+		<body>
+			<trans-unit id="pxe_counter_title">
+				<source>Counter (animated number)</source>
+			</trans-unit>
+			<trans-unit id="pxe_counter_description">
+				<source>A number that counts up from a start to an end value when scrolled into view. Optional prefix, suffix and caption.</source>
+			</trans-unit>
+			<trans-unit id="flexform.sheet.general">
+				<source>Counter</source>
+			</trans-unit>
+			<trans-unit id="flexform.counter_first">
+				<source>Start value</source>
+			</trans-unit>
+			<trans-unit id="flexform.counter_first.description">
+				<source>The animation starts here, usually 0.</source>
+			</trans-unit>
+			<trans-unit id="flexform.counter_last">
+				<source>End value</source>
+			</trans-unit>
+			<trans-unit id="flexform.counter_last.description">
+				<source>The number that is finally shown (also without JavaScript).</source>
+			</trans-unit>
+			<trans-unit id="flexform.prefix">
+				<source>Prefix (before the number)</source>
+			</trans-unit>
+			<trans-unit id="flexform.prefix.description">
+				<source>Short text in front of the number, e.g. "€" or "+".</source>
+			</trans-unit>
+			<trans-unit id="flexform.suffix">
+				<source>Suffix (after the number)</source>
+			</trans-unit>
+			<trans-unit id="flexform.suffix.description">
+				<source>Short text after the number, e.g. "%" or "k".</source>
+			</trans-unit>
+			<trans-unit id="flexform.label">
+				<source>Caption (below the number)</source>
+			</trans-unit>
+			<trans-unit id="flexform.decimals">
+				<source>Decimal places (0–4)</source>
+			</trans-unit>
+			<trans-unit id="flexform.separator">
+				<source>Group thousands</source>
+			</trans-unit>
+			<trans-unit id="flexform.separator.description">
+				<source>Separators follow the site language: 1,000 (en), 1.000 (de), 1 000 (fr).</source>
+			</trans-unit>
+			<trans-unit id="flexform.duration">
+				<source>Duration (seconds)</source>
+			</trans-unit>
+			<trans-unit id="flexform.delay">
+				<source>Delay before start (seconds)</source>
+			</trans-unit>
+			<trans-unit id="flexform.easing">
+				<source>Easing</source>
+			</trans-unit>
+			<trans-unit id="flexform.easing.linear">
+				<source>Linear</source>
+			</trans-unit>
+			<trans-unit id="flexform.easing.ease_out">
+				<source>Ease out (fast → slow)</source>
+			</trans-unit>
+			<trans-unit id="flexform.easing.ease_in_out">
+				<source>Ease in-out (smooth)</source>
+			</trans-unit>
+			<trans-unit id="flexform.layout">
+				<source>Layout</source>
+			</trans-unit>
+			<trans-unit id="flexform.layout.description">
+				<source>Visual variant; the CSS class of the element follows the choice (layout-default, layout-1, layout-2, layout-3).</source>
+			</trans-unit>
+			<trans-unit id="flexform.layout.default">
+				<source>Default (number above caption)</source>
+			</trans-unit>
+			<trans-unit id="flexform.layout.1">
+				<source>Accent (number in primary colour)</source>
+			</trans-unit>
+			<trans-unit id="flexform.layout.2">
+				<source>Inline (number and caption side by side)</source>
+			</trans-unit>
+			<trans-unit id="flexform.layout.3">
+				<source>Bold (heavier digits)</source>
+			</trans-unit>
+			<trans-unit id="module.title">
+				<source>Counter</source>
+			</trans-unit>
+			<trans-unit id="module.intro">
+				<source>All Counter elements of this installation, with a check whether each one will animate.</source>
+			</trans-unit>
+			<trans-unit id="module.stat.counters">
+				<source>Counters</source>
+			</trans-unit>
+			<trans-unit id="module.stat.pages">
+				<source>Pages</source>
+			</trans-unit>
+			<trans-unit id="module.stat.hidden">
+				<source>Hidden</source>
+			</trans-unit>
+			<trans-unit id="module.stat.incomplete">
+				<source>Won't animate</source>
+			</trans-unit>
+			<trans-unit id="module.column.element">
+				<source>Element</source>
+			</trans-unit>
+			<trans-unit id="module.column.page">
+				<source>Page</source>
+			</trans-unit>
+			<trans-unit id="module.column.range">
+				<source>Start → End</source>
+			</trans-unit>
+			<trans-unit id="module.column.easing">
+				<source>Easing</source>
+			</trans-unit>
+			<trans-unit id="module.column.status">
+				<source>Status</source>
+			</trans-unit>
+			<trans-unit id="module.column.actions">
+				<source>Actions</source>
+			</trans-unit>
+			<trans-unit id="module.badge.ok">
+				<source>OK</source>
+			</trans-unit>
+			<trans-unit id="module.badge.wontAnimate">
+				<source>Won't animate (start = end)</source>
+			</trans-unit>
+			<trans-unit id="module.badge.hidden">
+				<source>Hidden</source>
+			</trans-unit>
+			<trans-unit id="module.badge.language">
+				<source>Language %s</source>
+			</trans-unit>
+			<trans-unit id="module.badge.unknownEasing">
+				<source>Unknown easing "%s" – falls back to ease-out</source>
+			</trans-unit>
+			<trans-unit id="module.untitled">
+				<source>Counter #%s</source>
+			</trans-unit>
+			<trans-unit id="module.action.edit">
+				<source>Edit element</source>
+			</trans-unit>
+			<trans-unit id="module.action.page">
+				<source>Open page</source>
+			</trans-unit>
+			<trans-unit id="module.empty.title">
+				<source>No Counter elements yet</source>
+			</trans-unit>
+			<trans-unit id="module.empty.text">
+				<source>Add the content element "Counter (animated number)" to a page and it will be listed here.</source>
+			</trans-unit>
+			<trans-unit id="module.footer.brand">
+				<source>pxe_counter · </source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

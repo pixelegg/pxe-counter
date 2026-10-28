@@ -1,0 +1,95 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:variable name="ll">LLL:EXT:pxe_counter/Resources/Private/Language/Backend/locallang.xlf:</f:variable>
+
+<h1><f:translate key="{ll}module.title" /></h1>
+<p class="lead"><f:translate key="{ll}module.intro" /></p>
+
+<f:if condition="{usages}">
+    <f:then>
+        <p class="pxe-counter-stats">
+            <span class="badge badge-info me-1">{stats.total} <f:translate key="{ll}module.stat.counters" /></span>
+            <span class="badge badge-info me-1">{stats.pages} <f:translate key="{ll}module.stat.pages" /></span>
+            <f:if condition="{stats.hidden}">
+                <span class="badge badge-warning me-1">{stats.hidden} <f:translate key="{ll}module.stat.hidden" /></span>
+            </f:if>
+            <f:if condition="{stats.incomplete}">
+                <span class="badge badge-danger me-1">{stats.incomplete} <f:translate key="{ll}module.stat.incomplete" /></span>
+            </f:if>
+        </p>
+
+        <div class="table-fit">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col"><f:translate key="{ll}module.column.element" /></th>
+                        <th scope="col"><f:translate key="{ll}module.column.page" /></th>
+                        <th scope="col" class="text-end"><f:translate key="{ll}module.column.range" /></th>
+                        <th scope="col"><f:translate key="{ll}module.column.easing" /></th>
+                        <th scope="col"><f:translate key="{ll}module.column.status" /></th>
+                        <th scope="col" class="text-end"><f:translate key="{ll}module.column.actions" /></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <f:for each="{usages}" as="usage">
+                        <tr>
+                            <td>
+                                <f:if condition="{usage.header}">
+                                    <f:then><strong>{usage.header}</strong></f:then>
+                                    <f:else><em><f:translate key="{ll}module.untitled" arguments="{0: usage.contentUid}" /></em></f:else>
+                                </f:if>
+                                <span class="text-body-secondary">[{usage.contentUid}]</span>
+                            </td>
+                            <td>
+                                <a href="{usage.pageUrl}" title="{f:translate(key: '{ll}module.action.page')}">{usage.pageTitle} [{usage.pageUid}]</a>
+                            </td>
+                            <td class="text-end text-nowrap">
+                                {usage.from -> f:format.number(decimals: 0, decimalSeparator: '.', thousandsSeparator: ',')}
+                                &rarr;
+                                {usage.to -> f:format.number(decimals: 0, decimalSeparator: '.', thousandsSeparator: ',')}
+                            </td>
+                            <td>
+                                <f:if condition="{usage.easingValid}">
+                                    <f:then><code>{usage.easing}</code></f:then>
+                                    <f:else><span class="text-warning"><f:translate key="{ll}module.badge.unknownEasing" arguments="{0: usage.easing}" /></span></f:else>
+                                </f:if>
+                            </td>
+                            <td>
+                                <f:if condition="{usage.incomplete}">
+                                    <f:then><span class="badge badge-danger"><f:translate key="{ll}module.badge.wontAnimate" /></span></f:then>
+                                    <f:else><span class="badge badge-success"><f:translate key="{ll}module.badge.ok" /></span></f:else>
+                                </f:if>
+                                <f:if condition="{usage.hidden}">
+                                    <span class="badge badge-warning"><f:translate key="{ll}module.badge.hidden" /></span>
+                                </f:if>
+                                <f:if condition="{usage.languageUid} > 0">
+                                    <span class="badge badge-default"><f:translate key="{ll}module.badge.language" arguments="{0: usage.languageUid}" /></span>
+                                </f:if>
+                            </td>
+                            <td class="text-end text-nowrap">
+                                <a class="btn btn-default btn-sm" href="{usage.editUrl}" title="{f:translate(key: '{ll}module.action.edit')}">
+                                    <core:icon identifier="actions-open" size="small" />
+                                    <f:translate key="{ll}module.action.edit" />
+                                </a>
+                            </td>
+                        </tr>
+                    </f:for>
+                </tbody>
+            </table>
+        </div>
+    </f:then>
+    <f:else>
+        <div class="callout callout-info">
+            <div class="callout-body">
+                <h2 class="callout-title"><f:translate key="{ll}module.empty.title" /></h2>
+                <p class="mb-0"><f:translate key="{ll}module.empty.text" /></p>
+            </div>
+        </div>
+    </f:else>
+</f:if>
+
+<p class="text-body-secondary small mt-4"><f:translate key="{ll}module.footer.brand" /><a href="https://www.pixelegg.de" target="_blank" rel="noopener">pixelegg.de</a></p>
+
+</html>

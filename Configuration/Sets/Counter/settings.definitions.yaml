@@ -1,0 +1,30 @@
+categories:
+  pxe_counter:
+    label: 'Counter (animated number)'
+
+settings:
+  plugin.tx_pxecounter.settings.includeAssetsGlobally:
+    label: 'Include CSS/JS on every page'
+    description: 'Off: the counter CSS/JS is loaded only on pages that contain a counter. On: register the files via page.includeCSS/includeJSFooter for themes that concatenate assets (e.g. t3sbootstrap).'
+    category: pxe_counter
+    type: bool
+    default: false
+
+  plugin.tx_pxecounter.view.templateRootPath:
+    label: 'Template root path (index 10)'
+    description: 'Directory of the Fluid templates. To override a template, add templateRootPaths.20 in your own TypoScript instead of changing this.'
+    category: pxe_counter
+    type: string
+    default: 'EXT:pxe_counter/Resources/Private/Templates/ContentElements/'
+
+  plugin.tx_pxecounter.view.partialRootPath:
+    label: 'Partial root path (index 10)'
+    category: pxe_counter
+    type: string
+    default: 'EXT:pxe_counter/Resources/Private/Partials/ContentElements/'
+
+  plugin.tx_pxecounter.view.layoutRootPath:
+    label: 'Layout root path (index 10)'
+    category: pxe_counter
+    type: string
+    default: 'EXT:pxe_counter/Resources/Private/Layouts/ContentElements/'

@@ -1,0 +1,65 @@
+/* pxe_counter - frontend styles. Layout variants are class hooks on the element
+   (.layout-default, .layout-1, .layout-2, .layout-3); colours and fonts inherit from the site. */
+
+/* Visually hidden copy of the final value, inserted by counter.js while the digits animate. */
+.pxe-counter__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.pxe-counter-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.pxe-counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .25em;
+  text-align: center;
+  line-height: 1.05;
+}
+.pxe-counter__number {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .15em;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 1.6rem + 2.4vw, 3.6rem);
+  font-variant-numeric: tabular-nums;
+}
+.pxe-counter__value {
+  display: inline-block;
+  text-align: center;
+}
+.pxe-counter__prefix,
+.pxe-counter__suffix {
+  font-size: .6em;
+  font-weight: 600;
+  opacity: .85;
+}
+.pxe-counter__label {
+  font-size: clamp(.85rem, .8rem + .3vw, 1.05rem);
+  font-weight: 500;
+  letter-spacing: .02em;
+  opacity: .8;
+}
+
+/* Layout variants */
+/* Accent: number in the theme's primary colour (Bootstrap token with fallback) */
+.pxe-counter.layout-1 .pxe-counter__number { color: var(--bs-primary, #2E4A66); }
+/* Inline: number and caption side by side */
+.pxe-counter.layout-2 {
+  flex-direction: row;
+  align-items: baseline;
+  gap: .5em;
+}
+/* Bold: heavier, tighter digits */
+.pxe-counter.layout-3 .pxe-counter__number { font-weight: 800; letter-spacing: -.02em; }

@@ -1,0 +1,28 @@
+includes:
+    - vendor/saschaegerer/phpstan-typo3/extension.neon
+
+parameters:
+    level: 8
+    paths:
+        - Classes
+        - Configuration
+        - Tests
+    excludePaths:
+        # pxe_hub is an optional integration; its interfaces are not installed in CI.
+        - Classes/Hub/*
+        - Configuration/Services.php
+    bootstrapFiles:
+        - vendor/autoload.php
+    ignoreErrors:
+        # FlexFormTools::getDataStructureIdentifier()/parseDataStructureByIdentifier() take the TCA
+        # schema as additional argument on TYPO3 14 only; the test passes it for both versions.
+        -
+            message: '#FlexFormTools::(getDataStructureIdentifier|parseDataStructureByIdentifier)\(\) invoked with \d parameters#'
+            path: Tests/Functional/Configuration/FlexFormRegistrationTest.php
+            reportUnmatched: false
+        # ExtensionManagementUtility::addPlugin() takes (item, type, extensionKey) on TYPO3 13 and
+        # (item, flexForm) on 14; the override calls the matching variant per version.
+        -
+            message: '#ExtensionManagementUtility::addPlugin\(\) invoked with 3 parameters#'
+            path: Configuration/TCA/Overrides/tt_content.php
+            reportUnmatched: false

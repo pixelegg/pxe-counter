@@ -1,0 +1,41 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+<f:section name="Main">
+<f:comment>
+    Rendered through lib.contentElement, so header, frame and spacing from the "Appearance" tab apply.
+    The HTML already contains the final, localised value ({counter.toFormatted}): users without JS and
+    screen readers get the real number. counter.js animates the visible copy and restores this markup.
+    Variables: {counter} from Pixelegg\PxeCounter\DataProcessing\CounterProcessor, {flexform} raw values.
+</f:comment>
+<f:if condition="!{settings.includeAssetsGlobally}">
+    <f:asset.css identifier="pxe-counter" href="EXT:pxe_counter/Resources/Public/Css/counter.css" priority="true" />
+    <f:asset.script identifier="pxe-counter" src="EXT:pxe_counter/Resources/Public/JavaScript/counter.js" defer="true" />
+</f:if>
+<f:spaceless>
+<div class="pxe-counter-container {counter.layout}">
+    <div class="pxe-counter {counter.layout}"
+         data-from="{counter.from}"
+         data-to="{counter.to}"
+         data-duration="{counter.duration}"
+         data-delay="{counter.delay}"
+         data-decimals="{counter.decimals}"
+         data-separator="{f:if(condition: counter.grouping, then: '1', else: '0')}"
+         data-easing="{counter.easing}"
+         data-locale="{counter.locale}">
+        <span class="pxe-counter__number">
+            <f:if condition="{counter.prefix}">
+                <span class="pxe-counter__prefix">{counter.prefix}</span>
+            </f:if>
+            <span class="pxe-counter__value">{counter.toFormatted}</span>
+            <f:if condition="{counter.suffix}">
+                <span class="pxe-counter__suffix">{counter.suffix}</span>
+            </f:if>
+        </span>
+        <f:if condition="{counter.label}">
+            <span class="pxe-counter__label">{counter.label}</span>
+        </f:if>
+    </div>
+</div>
+</f:spaceless>
+</f:section>
+</html>

@@ -1,0 +1,11 @@
+"pages",,,,,
+,"uid","pid","title","deleted","hidden"
+,1,0,"Home",0,0
+,2,0,"About",0,0
+"tt_content",,,,,,,,,
+,"uid","pid","CType","header","hidden","sys_language_uid","deleted","pi_flexform"
+,10,1,"pxe_counter","Happy clients",0,0,0,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""main""><language index=""lDEF""><field index=""counter_first""><value index=""vDEF"">0</value></field><field index=""counter_last""><value index=""vDEF"">1200</value></field><field index=""easing""><value index=""vDEF"">ease-out</value></field></language></sheet></data></T3FlexForms>"
+,11,1,"pxe_counter","Broken counter",0,0,0,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""main""><language index=""lDEF""><field index=""counter_first""><value index=""vDEF"">500</value></field><field index=""counter_last""><value index=""vDEF"">500</value></field></language></sheet></data></T3FlexForms>"
+,12,2,"pxe_counter","Hidden counter",1,0,0,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""main""><language index=""lDEF""><field index=""counter_first""><value index=""vDEF"">0</value></field><field index=""counter_last""><value index=""vDEF"">42</value></field></language></sheet></data></T3FlexForms>"
+,13,1,"textmedia","Not a counter",0,0,0,""
+,14,1,"pxe_counter","Deleted counter",0,0,1,""

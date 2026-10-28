@@ -1,0 +1,21 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Pixelegg\PxeCounter\:
+    resource: '../Classes/*'
+    # Hub/ is registered conditionally in Services.php (only when pxe_hub is installed).
+    exclude:
+      - '../Classes/Hub/*'
+
+  Pixelegg\PxeCounter\Service\CounterUsageService:
+    public: true
+
+  Pixelegg\PxeCounter\Controller\Backend\OverviewController:
+    public: true
+
+  # Data processors are fetched from the container when they are public services.
+  Pixelegg\PxeCounter\DataProcessing\CounterProcessor:
+    public: true

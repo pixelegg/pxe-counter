@@ -1,0 +1,44 @@
+# Counter (pxe_counter) - TypoScript setup.
+# Loaded by both installation paths (static template "Counter" and site set "pixelegg/counter").
+# Requires fluid_styled_content (lib.contentElement).
+
+tt_content.pxe_counter =< lib.contentElement
+tt_content.pxe_counter {
+    templateName = Counter
+    templateRootPaths.10 = {$plugin.tx_pxecounter.view.templateRootPath}
+    partialRootPaths.10 = {$plugin.tx_pxecounter.view.partialRootPath}
+    layoutRootPaths.10 = {$plugin.tx_pxecounter.view.layoutRootPath}
+
+    settings {
+        includeAssetsGlobally = {$plugin.tx_pxecounter.settings.includeAssetsGlobally}
+    }
+
+    dataProcessing {
+        10 = TYPO3\CMS\Frontend\DataProcessing\FlexFormProcessor
+        10 {
+            fieldName = pi_flexform
+            as = flexform
+        }
+        # Reads "flexform", normalises values and formats the numbers for the site language.
+        20 = Pixelegg\PxeCounter\DataProcessing\CounterProcessor
+        20 {
+            as = counter
+        }
+    }
+}
+
+# Opt-in: register the assets site-wide via page.includeCSS/includeJSFooter instead of per element.
+# Needed for themes that concatenate/compress those lists (e.g. t3sbootstrap); the template then
+# skips its <f:asset.*> ViewHelpers. The quoted "in" check is deliberate: a site-set bool setting
+# is exported as an empty constant when false.
+['{$plugin.tx_pxecounter.settings.includeAssetsGlobally}' in ['1', 'true']]
+page {
+    includeCSS {
+        pxe_counter = EXT:pxe_counter/Resources/Public/Css/counter.css
+    }
+    includeJSFooter {
+        pxe_counter = EXT:pxe_counter/Resources/Public/JavaScript/counter.js
+        pxe_counter.defer = 1
+    }
+}
+[END]

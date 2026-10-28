@@ -1,0 +1,62 @@
+# Publishes a tagged release to the TYPO3 Extension Repository (TER) with typo3/tailor.
+#
+# Requirements (otherwise the job exits early and does nothing):
+#   - repository secret TYPO3_API_TOKEN  (extension.typo3.org > My account > Access tokens,
+#     scope "extension:write"; the token owner must own the extension key "pxe_counter")
+#   - a tag "vX.Y.Z" whose version matches ext_emconf.php
+# The tag message (git tag -a) is used as release notes; it falls back to the version.
+name: Publish to TER
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    name: Upload ${{ github.ref_name }} to TER
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    env:
+      TYPO3_EXTENSION_KEY: pxe_counter
+      TYPO3_API_TOKEN: ${{ secrets.TYPO3_API_TOKEN }}
+    steps:
+      - name: Check secret
+        run: |
+          if [ -z "${TYPO3_API_TOKEN}" ]; then
+            echo "::warning::TYPO3_API_TOKEN secret is not set - skipping TER upload."
+            echo "skip=true" >> "$GITHUB_ENV"
+          fi
+
+      - uses: actions/checkout@v4
+        if: env.skip != 'true'
+
+      - uses: shivammathur/setup-php@v2
+        if: env.skip != 'true'
+        with:
+          php-version: '8.3'
+          extensions: intl, mbstring, xml, zip
+          coverage: none
+
+      - name: Resolve version and release notes
+        if: env.skip != 'true'
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          EMCONF_VERSION=$(php -r "\$_EXTKEY='pxe_counter'; include 'ext_emconf.php'; echo \$EM_CONF[\$_EXTKEY]['version'];")
+          if [ "$VERSION" != "$EMCONF_VERSION" ]; then
+            echo "::error::Tag version $VERSION does not match ext_emconf.php version $EMCONF_VERSION"
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_ENV"
+          NOTES=$(git tag -l --format='%(contents)' "$GITHUB_REF_NAME")
+          echo "comment=${NOTES:-Release $VERSION}" >> "$GITHUB_ENV"
+
+      - name: Install tailor
+        if: env.skip != 'true'
+        run: composer global require typo3/tailor --no-interaction --no-progress
+
+      - name: Upload to TER
+        if: env.skip != 'true'
+        run: |
+          ~/.composer/vendor/bin/tailor set-version "${{ env.version }}" --no-docs
+          ~/.composer/vendor/bin/tailor ter:publish --comment "${{ env.comment }}" "${{ env.version }}"

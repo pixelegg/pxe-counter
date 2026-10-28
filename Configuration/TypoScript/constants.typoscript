@@ -1,0 +1,18 @@
+# Counter (pxe_counter) - TypoScript constants.
+# Override them in your own constants or, when you use the site set "pixelegg/counter",
+# in the site settings (Site Management > Settings).
+
+plugin.tx_pxecounter {
+    view {
+        # cat=counter/file/10; type=string; label=Template root path: Fluid template directory (index 10). Use index 20 in your own setup to override single templates.
+        templateRootPath = EXT:pxe_counter/Resources/Private/Templates/ContentElements/
+        # cat=counter/file/20; type=string; label=Partial root path (index 10)
+        partialRootPath = EXT:pxe_counter/Resources/Private/Partials/ContentElements/
+        # cat=counter/file/30; type=string; label=Layout root path (index 10)
+        layoutRootPath = EXT:pxe_counter/Resources/Private/Layouts/ContentElements/
+    }
+    settings {
+        # cat=counter/enable/10; type=boolean; label=Include CSS/JS on every page: Default (0) loads the assets only on pages that contain a counter (AssetCollector). Set to 1 for themes that concatenate page.includeCSS/includeJSFooter (e.g. t3sbootstrap).
+        includeAssetsGlobally = 0
+    }
+}

@@ -1,0 +1,2 @@
+# Site set "pixelegg/counter": same setup as the static template, loaded once.
+@import 'EXT:pxe_counter/Configuration/TypoScript/setup.typoscript'
