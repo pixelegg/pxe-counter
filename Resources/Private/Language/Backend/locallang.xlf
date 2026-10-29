@@ -22,7 +22,7 @@
 				<source>End value</source>
 			</trans-unit>
 			<trans-unit id="flexform.counter_last.description">
-				<source>The number that is finally shown (also without JavaScript).</source>
+				<source>The number that is finally shown (also without JavaScript). Decimals are allowed, e.g. 4.5.</source>
 			</trans-unit>
 			<trans-unit id="flexform.prefix">
 				<source>Prefix (before the number)</source>
@@ -41,6 +41,9 @@
 			</trans-unit>
 			<trans-unit id="flexform.decimals">
 				<source>Decimal places (0–4)</source>
+			</trans-unit>
+			<trans-unit id="flexform.decimals.description">
+				<source>Decimal places shown. Start and end value are stored with up to two decimal places.</source>
 			</trans-unit>
 			<trans-unit id="flexform.separator">
 				<source>Group thousands</source>
@@ -89,6 +92,12 @@
 			</trans-unit>
 			<trans-unit id="module.intro">
 				<source>All Counter elements of this installation, with a check whether each one will animate.</source>
+			</trans-unit>
+			<trans-unit id="module.stat.counter">
+				<source>Counter</source>
+			</trans-unit>
+			<trans-unit id="module.stat.page">
+				<source>Page</source>
 			</trans-unit>
 			<trans-unit id="module.stat.counters">
 				<source>Counters</source>
@@ -151,7 +160,7 @@
 				<source>Add the content element "Counter (animated number)" to a page and it will be listed here.</source>
 			</trans-unit>
 			<trans-unit id="module.footer.brand">
-				<source>pxe_counter · </source>
+				<source>pxe_counter ·</source>
 			</trans-unit>
 		</body>
 	</file>

@@ -2,6 +2,14 @@
       xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
+<f:layout name="Module" />
+
+<f:section name="Content">
+<f:comment>
+    Rendered through ModuleTemplate::renderResponse(): the core layout "Module" (EXT:backend)
+    provides the docheader and the padded module body for TYPO3 13.4 and 14.
+    Numbers are pre-formatted in the controller for the locale of the backend user.
+</f:comment>
 <f:variable name="ll">LLL:EXT:pxe_counter/Resources/Private/Language/Backend/locallang.xlf:</f:variable>
 
 <h1><f:translate key="{ll}module.title" /></h1>
@@ -10,8 +18,8 @@
 <f:if condition="{usages}">
     <f:then>
         <p class="pxe-counter-stats">
-            <span class="badge badge-info me-1">{stats.total} <f:translate key="{ll}module.stat.counters" /></span>
-            <span class="badge badge-info me-1">{stats.pages} <f:translate key="{ll}module.stat.pages" /></span>
+            <span class="badge badge-info me-1">{stats.total} <f:translate key="{ll}{f:if(condition: '{stats.total} == 1', then: 'module.stat.counter', else: 'module.stat.counters')}" /></span>
+            <span class="badge badge-info me-1">{stats.pages} <f:translate key="{ll}{f:if(condition: '{stats.pages} == 1', then: 'module.stat.page', else: 'module.stat.pages')}" /></span>
             <f:if condition="{stats.hidden}">
                 <span class="badge badge-warning me-1">{stats.hidden} <f:translate key="{ll}module.stat.hidden" /></span>
             </f:if>
@@ -46,9 +54,7 @@
                                 <a href="{usage.pageUrl}" title="{f:translate(key: '{ll}module.action.page')}">{usage.pageTitle} [{usage.pageUid}]</a>
                             </td>
                             <td class="text-end text-nowrap">
-                                {usage.from -> f:format.number(decimals: 0, decimalSeparator: '.', thousandsSeparator: ',')}
-                                &rarr;
-                                {usage.to -> f:format.number(decimals: 0, decimalSeparator: '.', thousandsSeparator: ',')}
+                                {usage.fromFormatted} &rarr; {usage.toFormatted}
                             </td>
                             <td>
                                 <f:if condition="{usage.easingValid}">
@@ -90,6 +96,7 @@
     </f:else>
 </f:if>
 
-<p class="text-body-secondary small mt-4"><f:translate key="{ll}module.footer.brand" /><a href="https://www.pixelegg.de" target="_blank" rel="noopener">pixelegg.de</a></p>
+<p class="text-body-secondary small mt-4"><f:translate key="{ll}module.footer.brand" /> <a href="https://www.pixelegg.de" target="_blank" rel="noopener">pixelegg.de</a></p>
+</f:section>
 
 </html>

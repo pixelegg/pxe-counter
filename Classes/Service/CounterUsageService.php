@@ -22,7 +22,7 @@ final class CounterUsageService
     ) {}
 
     /**
-     * @return list<array{contentUid:int, pageUid:int, pageTitle:string, header:string, hidden:bool, languageUid:int, from:float, to:float, easing:string, easingValid:bool, incomplete:bool}>
+     * @return list<array{contentUid:int, pageUid:int, pageTitle:string, header:string, hidden:bool, languageUid:int, from:float, to:float, decimals:int, easing:string, easingValid:bool, incomplete:bool}>
      */
     public function getUsages(): array
     {
@@ -58,6 +58,7 @@ final class CounterUsageService
                 'languageUid' => (int)$row['sys_language_uid'],
                 'from' => $from,
                 'to' => $to,
+                'decimals' => CounterData::clampDecimals((int)($flex['decimals'] ?? 0)),
                 'easing' => $easing,
                 'easingValid' => CounterData::isValidEasing($easing),
                 'incomplete' => CounterData::isIncomplete($hasValues, $from, $to),
@@ -68,7 +69,7 @@ final class CounterUsageService
     }
 
     /**
-     * @param list<array{contentUid:int, pageUid:int, pageTitle:string, header:string, hidden:bool, languageUid:int, from:float, to:float, easing:string, easingValid:bool, incomplete:bool}> $usages
+     * @param list<array{contentUid:int, pageUid:int, pageTitle:string, header:string, hidden:bool, languageUid:int, from:float, to:float, decimals:int, easing:string, easingValid:bool, incomplete:bool}> $usages
      * @return array{total:int, pages:int, hidden:int, incomplete:int}
      */
     public function getStatistics(array $usages): array

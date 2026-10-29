@@ -6,6 +6,28 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), ver
 
 ## [Unreleased]
 
+## [2.2.1] - 2026-10-29
+
+### Fixed
+- Backend module: rendered inside the core module layout (`<f:layout name="Module" />`), so it
+  has a docheader and the padded module body in TYPO3 13.4 and 14 instead of content glued to the
+  left edge.
+- Start and end value accept decimals (`type=number` with `format=decimal`). Before, the
+  DataHandler stored 4.9 as 4, so "Decimal places" and values like "€ 4.5 M" did not work.
+  Values are stored with up to two decimal places.
+- The header field uses the core *Headers* palette (header, type, position, date, link,
+  subheader). It was labelled "not visible in frontend", but the header is rendered.
+- Backend module: start/end values are formatted for the backend user's language
+  (1,200 / 1.200) with the decimal places of the element; singular and plural labels
+  ("1 Page" / "2 Pages"); missing space in the footer.
+
+### Changed
+- Documentation: screenshots of frontend and backend (TYPO3 14) in README and manual.
+- TER upload comment is generated as plain text from this changelog.
+- Documentation: module location *Content > Counter* (TYPO3 14) / *Web > Counter* (13.4),
+  wizard tab *Typical page content*; `Documentation/guides.xml` validates against the guides
+  schema and configures the TYPO3 docs theme.
+
 ## [2.2.0] - 2026-10-28
 
 ### Added
@@ -81,7 +103,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), ver
 
 - Initial release (TYPO3 12).
 
-[Unreleased]: https://github.com/pixelegg/pxe-counter/compare/v2.2.0...HEAD
+[Unreleased]: https://github.com/pixelegg/pxe-counter/compare/v2.2.1...HEAD
+[2.2.1]: https://github.com/pixelegg/pxe-counter/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/pixelegg/pxe-counter/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/pixelegg/pxe-counter/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/pixelegg/pxe-counter/compare/v1.0.0...v2.0.0

@@ -8,16 +8,14 @@ A content element that shows a number counting up from a start to an end value w
 scrolls into view ("1,200 happy clients", "98 %", "€ 4.5 M"). The final value is rendered
 server-side and formatted for the site language, so it is correct without JavaScript and for
 screen readers; a small dependency-free script (3 KB, no jQuery) adds the animation. CSS and JS
-are loaded only on pages that use the element. A backend module *Web > Counter* lists every
-counter of the installation and flags those that will not animate.
+are loaded only on pages that use the element. A backend module *Counter* (*Content > Counter*
+in TYPO3 14, *Web > Counter* in 13.4) lists every counter of the installation and flags those
+that will not animate.
 
-## Screenshots
+![Four counters in a row and the layout variants Accent, Inline and Bold on a plain demo page](Documentation/Images/frontend.png)
 
-| Content element in the frontend | Editing form | Backend module |
-| --- | --- | --- |
-| ![Counter in the frontend](Documentation/Images/frontend.png) | ![Editing form](Documentation/Images/backend-form.png) | ![Backend module](Documentation/Images/backend-module.png) |
-
-*(Screenshots are placeholders until the first release.)*
+*Counters on a demo page with a minimal theme: the default layout in the first row, the
+layout variants Accent, Inline and Bold below.*
 
 ## Requirements
 
@@ -51,24 +49,32 @@ Non-composer installations install the extension from the TER and continue with 
 ## Usage
 
 Add the content element **Counter (animated number)** (*Zähler (animierte Zahl)* in German).
-It appears in the *Default* tab of the new-content wizard (TYPO3 13: *Common*). Fields:
+It appears in the *Typical page content* tab of the new-content wizard (TYPO3 13.4 and 14). Fields:
+
+![New content element wizard with Counter (animated number) in the first tab](Documentation/Images/new-content-wizard.png)
+
+*The element in the new content element wizard (TYPO3 14, tab "Typical page content").*
 
 | Field | Meaning | Default |
 | --- | --- | --- |
-| Start value | Number the animation starts from | 0 |
-| End value | Number that is finally shown (also without JavaScript) | 0 |
+| Start value | Number the animation starts from; decimals allowed (up to two places stored) | 0 |
+| End value | Number that is finally shown (also without JavaScript), e.g. `4.5` | 0 |
 | Prefix | Short text before the number, e.g. `€` or `+` | – |
 | Suffix | Short text after the number, e.g. `%` or `k` | – |
 | Caption | Text below the number | – |
-| Decimal places | 0–4 | 0 |
+| Decimal places | 0–4 (set 1 for `4.5`) | 0 |
 | Group thousands | Thousands separator according to the site language (`1,000` / `1.000` / `1 000`) | on |
 | Duration | Animation length in seconds | 2 |
 | Delay | Pause before the animation starts, in seconds | 0 |
 | Easing | ease-out (fast → slow), linear, ease-in-out | ease-out |
 | Layout | Default, Accent (primary colour), Inline (number and caption side by side), Bold | Default |
 
-The header, frame class and spacing from the *Appearance* tab apply like for any other
-content element.
+![Editing form of a counter with start value, end value, prefix, suffix, caption, decimal places, grouping, duration, delay, easing and layout](Documentation/Images/backend-edit-form.png)
+
+*Editing form, tab "General".*
+
+Header, header type, subheader and header link (core *Headers* palette) as well as frame class
+and spacing from the *Appearance* tab apply like for any other content element.
 
 ### Number formatting
 
@@ -129,10 +135,14 @@ own template.
 
 ## Backend module
 
-*Web > Counter* lists all Counter elements of the installation (also hidden ones and
+*Content > Counter* (TYPO3 14) / *Web > Counter* (13.4) lists all Counter elements of the installation (also hidden ones and
 translations) with page, start → end, easing and a status: **OK**, or **Won't animate** when the
 start equals the end. Each row links to the element and to its page. Available to every backend
 user with access to the module; English and German.
+
+![Backend module listing eight counters with page, start and end value, easing and status; one hidden counter is flagged as not animating](Documentation/Images/backend-module.png)
+
+*The backend module. German interface: [screenshot](Documentation/Images/backend-module-de.png).*
 
 If the optional dashboard extension `pxe_hub` is installed, the module is hidden from the
 module menu and reached through the hub instead. Nothing else changes.

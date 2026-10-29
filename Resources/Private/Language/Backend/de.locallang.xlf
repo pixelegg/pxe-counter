@@ -28,8 +28,8 @@
 				<target>Endwert</target>
 			</trans-unit>
 			<trans-unit id="flexform.counter_last.description">
-				<source>The number that is finally shown (also without JavaScript).</source>
-				<target>Die Zahl, die am Ende steht (auch ohne JavaScript).</target>
+				<source>The number that is finally shown (also without JavaScript). Decimals are allowed, e.g. 4.5.</source>
+				<target>Die Zahl, die am Ende steht (auch ohne JavaScript). Dezimalzahlen sind möglich, z. B. 4,5.</target>
 			</trans-unit>
 			<trans-unit id="flexform.prefix">
 				<source>Prefix (before the number)</source>
@@ -54,6 +54,10 @@
 			<trans-unit id="flexform.decimals">
 				<source>Decimal places (0–4)</source>
 				<target>Nachkommastellen (0–4)</target>
+			</trans-unit>
+			<trans-unit id="flexform.decimals.description">
+				<source>Decimal places shown. Start and end value are stored with up to two decimal places.</source>
+				<target>Angezeigte Nachkommastellen. Start- und Endwert werden mit bis zu zwei Nachkommastellen gespeichert.</target>
 			</trans-unit>
 			<trans-unit id="flexform.separator">
 				<source>Group thousands</source>
@@ -118,6 +122,14 @@
 			<trans-unit id="module.intro">
 				<source>All Counter elements of this installation, with a check whether each one will animate.</source>
 				<target>Alle Zähler-Elemente dieser Installation, mit Prüfung, ob jedes animiert.</target>
+			</trans-unit>
+			<trans-unit id="module.stat.counter">
+				<source>Counter</source>
+				<target>Zähler</target>
+			</trans-unit>
+			<trans-unit id="module.stat.page">
+				<source>Page</source>
+				<target>Seite</target>
 			</trans-unit>
 			<trans-unit id="module.stat.counters">
 				<source>Counters</source>
@@ -200,8 +212,8 @@
 				<target>Fügen Sie einer Seite das Inhaltselement „Zähler (animierte Zahl)“ hinzu, dann erscheint es hier.</target>
 			</trans-unit>
 			<trans-unit id="module.footer.brand">
-				<source>pxe_counter · </source>
-				<target>pxe_counter · </target>
+				<source>pxe_counter ·</source>
+				<target>pxe_counter ·</target>
 			</trans-unit>
 		</body>
 	</file>

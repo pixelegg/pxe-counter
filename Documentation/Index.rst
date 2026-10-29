@@ -31,8 +31,15 @@ when it scrolls into view ("1,200 happy clients", "98 %", "€ 4.5 M"). The fina
 value is rendered server-side and formatted for the site language, so it is
 correct without JavaScript and for screen readers; a small dependency-free
 script adds the animation. CSS and JS are loaded only on pages that use the
-element. A backend module *Web > Counter* lists every counter of the
-installation and flags those that will not animate.
+element. A backend module *Counter* (*Content > Counter* in TYPO3 14,
+*Web > Counter* in 13.4) lists every counter of the installation and flags
+those that will not animate.
+
+.. figure:: /Images/frontend.png
+   :alt: Four counters in a row and the layout variants Accent, Inline and Bold on a plain demo page
+
+   Counters on a demo page with a minimal theme: default layout in the first
+   row, the variants Accent, Inline and Bold below.
 
 ----
 
@@ -71,7 +78,14 @@ Usage
 =====
 
 Add the content element **Counter (animated number)** (*Zähler (animierte
-Zahl)* in German); it is listed in the *Default* tab of the new-content wizard.
+Zahl)* in German); it is listed in the *Typical page content* tab of the
+new-content wizard (TYPO3 13.4 and 14).
+
+.. figure:: /Images/new-content-wizard.png
+   :alt: New content element wizard with Counter (animated number) in the first tab
+
+   The element in the new content element wizard (TYPO3 14, tab "Typical page
+   content").
 
 .. list-table::
    :header-rows: 1
@@ -81,10 +95,11 @@ Zahl)* in German); it is listed in the *Default* tab of the new-content wizard.
      - Meaning
      - Default
    * - Start value
-     - Number the animation starts from
+     - Number the animation starts from; decimals allowed (up to two places
+       stored)
      - 0
    * - End value
-     - Number that is finally shown (also without JavaScript)
+     - Number that is finally shown (also without JavaScript), e.g. ``4.5``
      - 0
    * - Prefix
      - Short text before the number, e.g. ``€`` or ``+``
@@ -96,7 +111,7 @@ Zahl)* in German); it is listed in the *Default* tab of the new-content wizard.
      - Text below the number
      - –
    * - Decimal places
-     - 0–4
+     - 0–4 (set 1 for ``4.5``)
      - 0
    * - Group thousands
      - Thousands separator according to the site language
@@ -114,53 +129,14 @@ Zahl)* in German); it is listed in the *Default* tab of the new-content wizard.
      - Default, Accent (primary colour), Inline (number and caption side by side), Bold
      - Default
 
-   - :Field: Start value
-     :Meaning: Number the animation starts from
-     :Default: 0
+.. figure:: /Images/backend-edit-form.png
+   :alt: Editing form of a counter with start value, end value, prefix, suffix, caption, decimal places, grouping, duration, delay, easing and layout
 
-   - :Field: End value
-     :Meaning: Number that is finally shown (also without JavaScript)
-     :Default: 0
+   Editing form, tab "General".
 
-   - :Field: Prefix
-     :Meaning: Short text before the number, e.g. ``€`` or ``+``
-     :Default: –
-
-   - :Field: Suffix
-     :Meaning: Short text after the number, e.g. ``%`` or ``k``
-     :Default: –
-
-   - :Field: Caption
-     :Meaning: Text below the number
-     :Default: –
-
-   - :Field: Decimal places
-     :Meaning: 0–4
-     :Default: 0
-
-   - :Field: Group thousands
-     :Meaning: Thousands separator according to the site language
-     :Default: on
-
-   - :Field: Duration
-     :Meaning: Animation length in seconds
-     :Default: 2
-
-   - :Field: Delay
-     :Meaning: Pause before the animation starts, in seconds
-     :Default: 0
-
-   - :Field: Easing
-     :Meaning: ease-out (fast → slow), linear, ease-in-out
-     :Default: ease-out
-
-   - :Field: Layout
-     :Meaning: Default, Accent (primary colour), Inline (number and caption
-       side by side), Bold
-     :Default: Default
-
-The header, frame class and spacing from the *Appearance* tab apply like for
-any other content element.
+Header, header type, subheader and header link (core *Headers* palette) as
+well as frame class and spacing from the *Appearance* tab apply like for any
+other content element.
 
 Number formatting
 -----------------
@@ -240,10 +216,21 @@ Accessibility and behaviour without JavaScript
 Backend module
 ==============
 
-*Web > Counter* lists all Counter elements of the installation (also hidden
-ones and translations) with page, start → end, easing and a status: **OK**,
-or **Won't animate** when the start equals the end. Each row links to the
+*Content > Counter* (TYPO3 14) / *Web > Counter* (13.4) lists all Counter
+elements of the installation (also hidden ones and translations) with page,
+start → end, easing and a status: **OK**, or **Won't animate** when the start
+equals the end. Each row links to the
 element and to its page. English and German.
+
+.. figure:: /Images/backend-module.png
+   :alt: Backend module listing eight counters with page, start and end value, easing and status; one hidden counter is flagged as not animating
+
+   The backend module *Counter*.
+
+.. figure:: /Images/backend-module-de.png
+   :alt: The same backend module with German labels
+
+   The same module with the backend language set to German.
 
 If the optional dashboard extension ``pxe_hub`` is installed, the module is
 hidden from the module menu and reached through the hub instead.

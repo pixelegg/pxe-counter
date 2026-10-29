@@ -7,6 +7,8 @@ namespace Pixelegg\PxeCounter\Tests\Functional\Frontend;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\DataHandling\DataHandler;
+use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\Framework\Frontend\InternalRequest;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -151,6 +153,8 @@ final class CounterRenderingTest extends FunctionalTestCase
         self::assertStringContainsString('id="c1"', $html);
         self::assertStringContainsString('frame-type-pxe_counter', $html);
         self::assertMatchesRegularExpression('#<h2[^>]*>\s*Happy clients\s*</h2>#', $html);
+        // subheader from the core "headers" palette is rendered as well
+        self::assertMatchesRegularExpression('#<h3[^>]*>\s*Since 1995\s*</h3>#', $html);
     }
 
     #[Test]
@@ -181,6 +185,55 @@ final class CounterRenderingTest extends FunctionalTestCase
         $withoutCounters = $this->render('http://localhost/empty');
         self::assertMatchesRegularExpression('#<link[^>]+counter\.css#', $withoutCounters);
         self::assertMatchesRegularExpression('#<script[^>]*defer[^>]*counter\.js|<script[^>]*counter\.js[^>]*defer#', $withoutCounters);
+    }
+
+    #[Test]
+    public function decimalValueSavedThroughDataHandlerKeepsItsDecimals(): void
+    {
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/be_users.csv');
+        $backendUser = $this->setUpBackendUser(1);
+        $GLOBALS['LANG'] = $this->get(LanguageServiceFactory::class)->createFromUserPreferences($backendUser);
+
+        // Saved like the backend form does: start 0, end 4.5, one decimal place, on the page "Empty".
+        $dataHandler = GeneralUtility::makeInstance(DataHandler::class);
+        $dataHandler->start([
+            'tt_content' => [
+                'NEW1' => [
+                    'pid' => 2,
+                    'CType' => 'pxe_counter',
+                    'header' => 'Rating',
+                    'colPos' => 0,
+                    'pi_flexform' => [
+                        'data' => [
+                            'main' => [
+                                'lDEF' => [
+                                    'counter_first' => ['vDEF' => '0'],
+                                    'counter_last' => ['vDEF' => '4.5'],
+                                    'decimals' => ['vDEF' => '1'],
+                                    'separator' => ['vDEF' => '1'],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ], []);
+        $dataHandler->process_datamap();
+        self::assertSame([], $dataHandler->errorLog);
+
+        $uid = (int)($dataHandler->substNEWwithIDs['NEW1'] ?? 0);
+        $flexForm = (string)$this->getConnectionPool()->getConnectionForTable('tt_content')
+            ->select(['pi_flexform'], 'tt_content', ['uid' => $uid])->fetchOne();
+        self::assertMatchesRegularExpression('#index="counter_last">\s*<value index="vDEF">4\.50</value>#', $flexForm);
+
+        $this->setUpStaticTemplateSite('de_DE.UTF-8');
+        $html = $this->render('http://localhost/empty');
+        self::assertStringContainsString('<span class="pxe-counter__value">4,5</span>', $html);
+        self::assertStringContainsString('data-to="4.5"', $html);
+        self::assertStringContainsString('data-decimals="1"', $html);
+
+        $this->writeSiteConfiguration('en_US.UTF-8', '');
+        self::assertStringContainsString('<span class="pxe-counter__value">4.5</span>', $this->render('http://localhost/empty'));
     }
 
     #[Test]

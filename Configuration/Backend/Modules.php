@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 use Pixelegg\PxeCounter\Controller\Backend\OverviewController;
 
-// Web > Counter: site-wide list of all Counter elements. The module does not depend on the
-// selected page, so the page tree is not shown. Hidden automatically when pxe_hub hosts it.
+// Web > Counter (TYPO3 14: Content > Counter): site-wide list of all Counter elements. The module
+// does not depend on the selected page, so the page tree is not shown. Hidden automatically when
+// pxe_hub hosts it.
 return [
     'pxe_counter' => [
         'parent' => 'web',

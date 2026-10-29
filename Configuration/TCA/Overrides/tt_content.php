@@ -33,11 +33,13 @@ if ((new Typo3Version())->getMajorVersion() >= 14) {
 // Backend type icon for the CType.
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pxe_counter'] = 'content-pxe-counter';
 
-// Field layout for the CType.
+// Field layout for the CType. The header is rendered by the fluid_styled_content "Default" layout,
+// so the element uses the core "headers" palette (header, layout, position, date, link, subheader)
+// like the core content elements.
 $GLOBALS['TCA']['tt_content']['types']['pxe_counter']['showitem']
     = '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,'
     . '--palette--;;general,'
-    . 'header;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header.ALT.html_formlabel,'
+    . '--palette--;;headers,'
     . 'pi_flexform,'
     . '--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,'
     . '--palette--;;frames,--palette--;;appearanceLinks,'
