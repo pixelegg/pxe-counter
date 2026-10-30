@@ -9,7 +9,7 @@ Counter (animated number)
    pixelegg/pxe-counter
 
 :Version:
-   2.2.0
+   |release|
 
 :Language:
    en
